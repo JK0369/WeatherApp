@@ -44,6 +44,9 @@ final class WeatherView: UIView {
     }
     
     private func setupGesture() {
+        // TODO: 수정은 이미 했지만 기록 - handleTapGesture라는 메소드 이름보단 callTapViewClosure가 좋음
+        // callTapViewClosure은 이 메소드를 호출하는 쪽에서 메소드 안을 보지 않아도 예측할 수 있음
+        // handleTapGesture은 이 메소드를 호출하는 쪽에서 메소드 내부를 예측할 수 없음 ('어떻게'의 의미만 있는 메소드명 지양할것)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(callTapViewClosure))
         addGestureRecognizer(gesture)
     }
@@ -57,6 +60,8 @@ final class WeatherView: UIView {
     func setupLayout() {
         backgroundColor = .white
         
+        // TODO: 이미 수정했지만 addSubview하고난 후 layout을 정해주는게 직관적임
+        // addSubview부분과 layout부분이 따로 있으면 위에 읽었다가, 아래 읽었다가
         addSubview(imageView)
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()

@@ -24,6 +24,7 @@ class WeatherViewController: UIViewController, WeatherPresentable {
     private let todayView = WeatherView()
     private let tomorrowView = {
         let view = WeatherView()
+        // TODO: 중복코드
         view.alpha = 0.5
         view.layer.borderColor = UIColor.gray.cgColor
         view.layer.borderWidth = 1
@@ -129,24 +130,27 @@ class WeatherViewController: UIViewController, WeatherPresentable {
     private func handleOutput(_ state: WeatherState) {
         switch state {
         case let .loadWeather(weatherDisplayModel):
+            // TODO: 중복코드
             todayView.configures(model: weatherDisplayModel.todayWeather, isTomorrow: false)
             todayView.tapViewClosure = { [weak self] in
                 guard let self, !isTodayViewFull else { return }
-                isTodayViewFull.toggle()
-                moveWithAnimation(fromView: todayView, toView: tomorrowView)
+                moveWithAnimation(fromView: todayView, toView: tomorrowView) {
+                    self.isTodayViewFull.toggle()
+                }
             }
             
             tomorrowView.configures(model: weatherDisplayModel.tomorrowWeather, isTomorrow: true)
             tomorrowView.tapViewClosure = { [weak self] in
                 guard let self, isTodayViewFull else { return }
-                isTodayViewFull.toggle()
-                moveWithAnimation(fromView: tomorrowView, toView: todayView)
+                moveWithAnimation(fromView: tomorrowView, toView: todayView) {
+                    self.isTodayViewFull.toggle()
+                }
             }
         }
     }
     
     // TODO: 장황한 코드3
-    private func moveWithAnimation(fromView: UIView, toView: UIView) {
+    private func moveWithAnimation(fromView: UIView, toView: UIView, completion: @escaping () -> ()) {
         guard let snapshotView = fromView.snapshotView(afterScreenUpdates: true) else { return }
         snapshotView.frame = fromView.frame
         
@@ -161,6 +165,7 @@ class WeatherViewController: UIViewController, WeatherPresentable {
             self.layoutBottomTrailing(toView, shouldRemake: true)
             self.view.bringSubviewToFront(toView)
             self.view.layoutIfNeeded()
+            completion()
         })
     }
 }

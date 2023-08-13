@@ -23,6 +23,7 @@ enum Weather: String, Codable {
     }
 }
 
+// TODO: 장황한 코드 - 나름 프로토콜 지향으로 모델을 설계했지만 코드의 길이가 길어서 장확해보이는 코드
 
 // MARK: - WeatherDisplayElementable
 
@@ -55,6 +56,7 @@ struct WeatherDisplayModel: WeatherDisplable {
 // MARK: - WeatherResponse + WeatherDisplable
 
 extension WeatherResponse: WeatherDisplable {
+    // TODO: 중복 코드
     var todayWeather: WeatherDisplayElementable {
         WeatherDisplayElement(
             weather: Weather(rawValue: today.weather.main) ?? .unknown,

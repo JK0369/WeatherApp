@@ -18,6 +18,7 @@ enum API {
                 return Disposables.create()
             }
             
+            // TODO: 깊이가 깊은 코드1
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -33,6 +34,7 @@ enum API {
     
     private static func loadLocalJSONFile(named fileName: String) -> Data? {
         guard let path = Bundle.main.path(forResource: fileName, ofType: "json") else { return nil }
+        // TODO: do - catch문은 if else문이라고 생각할 것 -> return nil이 catch문 안에 있어야 더욱 읽히기 쉬움
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
             return data

@@ -1,0 +1,20 @@
+{
+  "today": {
+    "dt": 1660478400,
+    "temp": 25.0,
+    "weather": {
+        "id": 801,
+        "main": "clouds",
+        "description": "few clouds"
+      }
+  },
+  "tomorrow": {
+      "dt": 1660478400,
+    "temp": 32.0,
+    "weather": {
+        "id": 802,
+        "main": "sunny",
+        "description": "very sunny"
+      }
+  }
+}

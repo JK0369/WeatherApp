@@ -39,6 +39,7 @@ final class WeatherViewModel: WeatherViewModelable {
     // MARK: Input
     func input(_ action: WeatherAction) {
         switch action {
+            // TODO: 장황한 코드2
         case .viewDidLoad:
             dependency
                 .service

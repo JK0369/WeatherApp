@@ -76,6 +76,7 @@ class WeatherViewController: UIViewController, WeatherPresentable {
         view.layer.cornerRadius = 0
         view.clipsToBounds = true
         
+        // TODO: 중복코드1
         if shouldRemake {
             view.snp.remakeConstraints {
                 $0.edges.equalToSuperview()
@@ -94,6 +95,7 @@ class WeatherViewController: UIViewController, WeatherPresentable {
         view.layer.cornerRadius = 14
         view.clipsToBounds = true
         
+        // TODO: 중복코드2
         if shouldRemake {
             view.snp.remakeConstraints {
                 $0.bottom.trailing.equalToSuperview()
@@ -123,6 +125,7 @@ class WeatherViewController: UIViewController, WeatherPresentable {
             .disposed(by: disposeBag)
     }
     
+    // TODO: 중복코드3
     private func handleOutput(_ state: WeatherState) {
         switch state {
         case let .loadWeather(weatherDisplayModel):
@@ -142,6 +145,7 @@ class WeatherViewController: UIViewController, WeatherPresentable {
         }
     }
     
+    // TODO: 장황한 코드3
     private func moveWithAnimation(fromView: UIView, toView: UIView) {
         guard let snapshotView = fromView.snapshotView(afterScreenUpdates: true) else { return }
         snapshotView.frame = fromView.frame

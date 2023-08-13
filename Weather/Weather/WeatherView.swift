@@ -75,6 +75,7 @@ final class WeatherView: UIView {
         }
     }
     
+    // TODO: 장황한 코드1
     func configures(model: WeatherDisplayElementable, isTomorrow: Bool) {
         imageView.image = model.weather.image
         temperatureLabel.text = "\(model.temperature)°C"
